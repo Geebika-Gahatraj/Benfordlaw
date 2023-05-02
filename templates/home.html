@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Benford's Law Checker</title>
+  </head>
+  <body>
+    <h1>Benford's Law Checker</h1>
+    <form action="{{ request.route_url('benford') }}" method="post" enctype="multipart/form-data">
+      <div>
+        <label for="file">Select a CSV file:</label>
+        <input type="file" name="file" id="file" accept=".csv">
+      </div>
+      <div>
+        <button type="submit">Check</button>
+      </div>
+    </form>
+    {% if result is not none %}
+      {% if result.conforms_to_benfords_law %}
+        <p>The data conforms to Benford's Law.</p>
+      {% else %}
+        <p>The data does not conform to Benford's Law.</p>
+      {% endif %}
+    {% endif %}
+  </body>
+</html>
